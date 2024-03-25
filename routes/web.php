@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodController;
+
+Route::get('/foods/{id}', [FoodController::class, 'index'])->name('foods.index');
+Route::get('/foods/list', [FoodController::class, 'list'])->name('foods.list');
+Route::get('/foods/show/{id}', [FoodController::class, 'show'])->name('foods.show');
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +23,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
