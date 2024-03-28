@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Food Blogs') }}</title>
-
+    <title>{{ $title ?? config('app.name', __('Food Blogs') ) }}</title>
+ 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -20,21 +20,55 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Food Blogs') }}
+                <a class="nav-link" href="{{ url('/') }}">
+                    {{-- {{ config('app.name', 'Food Blogs') }} --}}
+                    <div style="width: 23px;height: 23px;">
+                        <i class="bi bi-cup-hot-fill"></i>
+                    </div>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+
+                <div style="padding-left: 10px">
+                    @if (isset($childPageNav))
+                        {{ $childPageNav }}
+                    @endif
+                </div>
+ 
+                <button class="navbar-toggler" type="button"
+                 data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                 aria-controls="navbarSupportedContent" aria-expanded="false" 
+                 aria-label="{{ __('Toggle navigation') }}">
+                 <div style="width: 20px;height: 20px;">
+                    <i class="bi bi-list"></i>
+                </div>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        
-                    </ul>
+
+ 
+  
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            {{-- <a class="nav-link" href="{{ auth()->check() ? route('foods.list') : route('login') }}"">
+                                Explore foods
+                            </a> --}}
+
+                            {{-- @if (!Route::is('foods.explore'))
+                            @endif --}}
+                            <a class="nav-link" href="{{ route('foods.explore') }}"">
+                                {{ __('Explore foods') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            @auth
+                            <a class="nav-link" href="{{ route('foods.my-foods') }}"">
+                                {{ __('My foods') }}
+                            </a>
+                            @endauth
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -55,6 +89,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        {{ __('Profile') }}
+                                    </a> --}}
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -72,8 +110,12 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        {{-- <main class="py-3">
             @yield('content')
+        </main> --}}
+
+        <main class="py-3">
+            {{ $slot }}
         </main>
     </div>
 </body>

@@ -1,22 +1,60 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
+@endsection --}}
+
+<x-app-layout>
     <style>
         .bg-light-20 {
             background-color: rgba(255, 255, 255, 0.20);
         }
+        .carousel-caption {
+            top: 25px;
+            bottom: auto;
+            transform: translateY(0);
+        }
+        .carousel-indicators {
+            top: 10px;
+            bottom: auto;
+            transform: translateY(0);
+        }
+        .food-carousel {
+            max-width: 100%;
+            /* Ensure image doesn't exceed its original size */
+            height: auto;
+            /* Maintain aspect ratio */
+            display: block;
+            /* Ensure image behaves as a block element */
+            margin: 0 auto;
+            /* Center the image horizontally */
+        }
+
+        @media screen and (min-width: 960px) {
+            .food-carousel {
+                width: 40%;
+                /* Set image width to 40% when screen width is more than 540px */
+            }
+        }
     </style>
 
-    <div class="content  ">
+    <div>
         <row>
-            <div class="container-fluid
-             d-flex justify-content-center align-items-center">
-                <h3 style="color: rgb(86, 86, 86);">
-                    Welcome to the delicious world of foods
-                </h3>
+            <div class="container-md">
+                <row>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 style="color: rgba(86, 86, 86, 0.638);text-align: center;">
+                            {{ __('Welcome to the delicious world of foods') }}
+                        </h3>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h4 style="color: rgba(86, 86, 86, 0.895);text-align: center;">
+                            {{ __('Today\'s top 10 foods') }}
+                        </h4>
+                    </div>
+                </row>
             </div>
-            <br>
-            <div class="container-fluid d-flex justify-content-center align-items-center">
-                <div id="carouselExampleCaptions" class="carousel slide" style="width: 40%;">
+
+            <div class="container-fluid d-flex justify-content-center align-items-center food-carousel">
+                <div id="carouselExampleCaptions" class="carousel slide" >
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                             aria-current="true" aria-label="Slide 1"></button>
@@ -56,8 +94,7 @@
         </row>
 
     </div>
-@endsection
-
+</x-app-layout>
 
 
 

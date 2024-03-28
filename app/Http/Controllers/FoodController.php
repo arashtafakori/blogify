@@ -3,55 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class FoodController extends Controller
 {
-    public function index()
+    public function explore($locale = 'en')
     {
-        return redirect(route("foods.list"));
+        App::setLocale($locale);
+        return view("foods.explore");
     }
- 
-    public function list()
+    public function myfoods($locale = 'en')
     {
-        return view("foods.list");
-    } 
-
-    public function create()
+        App::setLocale($locale);
+        return view("foods.my-foods");
+    }
+    public function newPost($locale = 'en')
     {
-        return view("foods.create");
+        App::setLocale($locale);
+        return view("foods.new-post");
+    }
+    public function editPost($locale = 'en')
+    {
+        App::setLocale($locale);
+        return view("foods.edit-post");
     }
 
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'foodImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:1048',
+            'title' => 'required|string|max:40',
+            'description' => 'required|string|max:100',
+            'content' => 'string|max:1000',
+        ]);
 
-    public function show(string $id)
-    {
-        return view("foods.show");
-    }
+        $image_path = $request->file('foodImage')->store('images', 'public');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // $post = $request->user()->posts()->create($validated);
+        // event(new RealTimeMessage('New post: <a href="'.route('foods.show',$post->id).'">'.$post->title.'</a>'));
+        
+        return redirect(route('foods.my-foods'))->with('status', 'post-added');
     }
 }

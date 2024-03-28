@@ -1,1 +1,1 @@
-# blogify
+# food blogs

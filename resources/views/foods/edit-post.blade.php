@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot:title>
-        Show the food
+        Edit the post
     </x-slot:title>
     <div >
-        Show the food . {{route('foods.show', 1)}}
+        Edit the post . {{route('foods.edit-post', 1)}}
     </div>  
 </x-app-layout>
