@@ -17,7 +17,7 @@
             bottom: auto;
             transform: translateY(0);
         }
-        .food-carousel {
+        .post-carousel {
             max-width: 100%;
             /* Ensure image doesn't exceed its original size */
             height: auto;
@@ -29,7 +29,7 @@
         }
 
         @media screen and (min-width: 960px) {
-            .food-carousel {
+            .post-carousel {
                 width: 40%;
                 /* Set image width to 40% when screen width is more than 540px */
             }
@@ -42,18 +42,18 @@
                 <row>
                     <div class="d-flex justify-content-center align-items-center">
                         <h3 style="color: rgba(86, 86, 86, 0.638);text-align: center;">
-                            {{ __('Welcome to the delicious world of foods') }}
+                            {{ __('Welcome to the delicious world of posts') }}
                         </h3>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <h4 style="color: rgba(86, 86, 86, 0.895);text-align: center;">
-                            {{ __('Today\'s top 10 foods') }}
+                            {{ __('Today\'s top 10 posts') }}
                         </h4>
                     </div>
                 </row>
             </div>
 
-            <div class="container-fluid d-flex justify-content-center align-items-center food-carousel">
+            <div class="container-fluid d-flex justify-content-center align-items-center post-carousel">
                 <div id="carouselExampleCaptions" class="carousel slide" >
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"

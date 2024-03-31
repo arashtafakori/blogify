@@ -2,11 +2,11 @@
     "Login" : "Anmeldung",
     "Register" : "Registrieren",
     "Logout" : "Ausloggen",
-    "Welcome to the delicious world of foods" : "Willkommen in der köstlichen Welt der Lebensmittel",
-    "Today's top 10 foods" : "Die Top 10 Lebensmittel von heute",
+    "Welcome to the delicious world of posts" : "Willkommen in der köstlichen Welt der Lebensmittel",
+    "Today's top 10 posts" : "Die Top 10 Lebensmittel von heute",
     "Food Blogs" : "Food Blogs",
-    "Explore foods" : "Entdecken Sie Lebensmittel",
-    "My foods" : "Mein Essen",
+    "Explore posts" : "Entdecken Sie Lebensmittel",
+    "My posts" : "Meine Posts",
 
     "New post" : "Neuer Beitrag",
     "Choose an image" : "Wählen Sie ein Bild",
@@ -14,5 +14,8 @@
     "Description" : "Beschreibung",
     "Content" : "Inhalt",
     "Send Post" : "Beitrag senden",
-    "Cancel" : "Stornieren"
+    "Cancel" : "Stornieren",
+    
+    "A new post has been sent." : "Ein neuer Beitrag wurde gesendet.",
+    "The post details" : "die Post-Details"
 }

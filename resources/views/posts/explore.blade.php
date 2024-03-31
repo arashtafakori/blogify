@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot:title>
-        Explore foods
+        Explore posts
     </x-slot:title>
     <div >
-        Explore foods
+        Explore posts
     </div> 
 </x-app-layout>

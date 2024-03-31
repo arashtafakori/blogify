@@ -51,21 +51,21 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="{{ auth()->check() ? route('foods.list') : route('login') }}"">
-                                Explore foods
+                            {{-- <a class="nav-link" href="{{ auth()->check() ? route('posts.list') : route('login') }}"">
+                                Explore posts
                             </a> --}}
 
-                            {{-- @if (!Route::is('foods.explore'))
+                            {{-- @if (!Route::is('posts.explore'))
                             @endif --}}
-                            <a class="nav-link" href="{{ route('foods.explore') }}"">
-                                {{ __('Explore foods') }}
+                            <a class="nav-link" href="{{ route('posts.explore') }}"">
+                                {{ __('Explore posts') }}
                             </a>
                         </li>
 
                         <li class="nav-item">
                             @auth
-                            <a class="nav-link" href="{{ route('foods.my-foods') }}"">
-                                {{ __('My foods') }}
+                            <a class="nav-link" href="{{ route('posts.my-posts') }}"">
+                                {{ __('My posts') }}
                             </a>
                             @endauth
                         </li>

@@ -11,13 +11,14 @@
                  <div class="card">
                      <div class="card-header">{{ __('New post') }}</div>
                      <div class="card-body">
-                         <form method="POST" action="{{ route('foods.store') }}" enctype="multipart/form-data">
+                         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                              @csrf
-                             <div class="row mb-3">
-                                 {{-- <x-image-uploader /> --}}
+                                                              {{-- <x-image-uploader /> --}}
                                  {{-- <x-image-uploader src="{{ asset('images/warm_potato_salad-1024x819.jpg') }}" /> --}}
-                                 {{-- @include('foods.partials.image-uploader') --}}
+                                 {{-- @include('posts.partials.image-uploader') --}}
                                  {{-- <img id="selectedAvatar" src="{{ asset('images/dish.png') }}" alt="Food Image" > --}}
+                                 
+                             <div class="row mb-3">
                                  <img x-data :class="$store.postStore.imageVisibility"
                                      x-show="$store.postStore.imageVisibility" id="selectedAvatar" src="#"
                                      alt="Food Image">
@@ -26,11 +27,11 @@
                              <div class="row mb-3">
                                  <div class="d-flex justify-content-center mb-3">
                                      <div class="btn btn-outline-primary btn-sm">
-                                         <label class="form-label m-1" for="foodImage">
+                                         <label class="form-label m-1" for="postImage">
                                              {{ __('Choose an image') }}
                                          </label>
-                                         <input type="file" class="form-control d-none" id="foodImage"
-                                             name="foodImage"
+                                         <input type="file" class="form-control d-none" id="postImage"
+                                             name="postImage"
                                              onchange="displaySelectedImage(event, 'selectedAvatar')" />
                                      </div>
 
@@ -46,7 +47,7 @@
                                  </div>
 
                                  <div class="d-flex justify-content-center mb-3">
-                                    @error('foodImage')
+                                    @error('postImage')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -98,12 +99,12 @@
 
                              <div class="row mb-3">
                                  <div class="d-flex justify-content-center mb-3">
-                                     <button type="submit" class="mx-2 btn btn-primary">
-                                         {{ __('Send Post') }}
-                                     </button>
                                      <button id="cancelButton" class="mx-2 btn btn-secondary">
                                          {{ __('Cancel') }}
                                      </button>
+                                     <button type="submit" class="mx-2 btn btn-primary">
+                                        {{ __('Send Post') }}
+                                    </button>
                                  </div>
                              </div>
                          </form>
@@ -118,7 +119,7 @@
      document.getElementById('cancelButton').addEventListener('click', function(event) {
          event.preventDefault();
          window.history.back();
-         window.location="{{ route('foods.my-foods') }}";
+         window.location= "{{ route('posts.my-posts') }}";
      });
 
      function displaySelectedImage(event, elementId) {
@@ -152,7 +153,7 @@
              closeImage() {
                  this.imageSrc = '';
                  this.imageVisibility = false;
-                 document.getElementById("foodImage").value = null;
+                 document.getElementById("postImage").value = null;
              }
          })
      })

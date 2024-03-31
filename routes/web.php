@@ -1,18 +1,23 @@
 <?php
 
-use App\Http\Controllers\FoodController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
-// Route::get('/foods/{id}', [FoodController::class, 'index'])->middleware(['auth', 'verified'])->name('foods.index');
-// Route::get('/foods/list', [FoodController::class, 'list'])->middleware(['auth', 'verified'])->name('foods.list');
-// Route::get('/foods/show/{id}', [FoodController::class, 'show'])->middleware(['auth', 'verified'])->name('foods.show');
-Route::get('/foods/new-post/{locale?}', [FoodController::class, 'newPost'])->name('foods.new-post');
-Route::get('/foods/explore/{locale?}', [FoodController::class, 'explore'])->name('foods.explore');
-Route::get('/foods/myfoods/{locale?}', [FoodController::class, 'myfoods'])->middleware(['auth', 'verified'])->name('foods.my-foods');
-Route::resource('foods', FoodController::class)
-->only(['store', 'update', 'destroy'])
+// Route::get('/posts/{id}', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('posts.index');
+// Route::get('/posts/list', [PostController::class, 'list'])->middleware(['auth', 'verified'])->name('posts.list');
+// Route::get('/posts/show/{id}', [PostController::class, 'show'])->middleware(['auth', 'verified'])->name('posts.show-post');
+// Route::get('/posts/new-post/{locale?}', [PostController::class, 'newPost'])->name('posts.new-post');
+ 
+
+// Route::resource('posts', PostController::class)->only(['show']);
+Route::get('/posts/{id}/show/{locale?}', [PostController::class, 'show'])->name('posts.show-post');
+
+Route::get('/posts/explore/{locale?}', [PostController::class, 'explore'])->name('posts.explore');
+Route::get('/posts/my-posts/{locale?}', [PostController::class, 'myPosts'])->middleware(['auth', 'verified'])->name('posts.my-posts');
+Route::resource('posts', PostController::class)
+->only(['edit', 'create', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
