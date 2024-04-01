@@ -16,20 +16,7 @@
                 @endif
 
                 <div style="position: relative;">
-                    <button type="button" style="position: absolute; bottom: 5px; left: 5px; "
-                        class="btn btn-light btn-sm">
-                        <div style="width: 20px;height: 20px;">
-                            <i class="bi bi-heart"></i>
-                            {{-- <i class="bi bi-heart-fill"></i> --}}
-                        </div>
-                    </button>
-                    <div class="rounded fs-6"
-                        style="background-color: rgba(255, 255, 255, 0.6);
-                        position: absolute; bottom: 5px; left: 50px; ">
-                        <div class="px-1">
-                            38
-                        </div>
-                    </div>
+                    <livewire:like :post="$post" /> 
     
                     <div class="rounded fs-6"
                         style="background-color: rgba(255, 255, 255, 0.6);
@@ -39,14 +26,7 @@
                         </div>
                     </div>
     
-                    <button type="button" 
-                    style="position: absolute; bottom: 5px; right: 5px;"
-                        class="btn btn-light btn-sm">
-                        <div style="width: 20px;height: 20px;">
-                            <i class="bi bi-bookmark"></i>
-                            {{-- <i class="bi bi-bookmark-fill"></i> --}}
-                        </div>
-                    </button>
+                    <livewire:bookmark :post="$post" /> 
                 </div>
             </div>
     
