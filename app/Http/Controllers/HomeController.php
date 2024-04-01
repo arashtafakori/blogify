@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,11 @@ class HomeController extends Controller
     public function welcome($locale = 'en')
     {        
         App::setLocale($locale);
-        return view('welcome');
+        
+        $items = Post::with('user')->orderBy('created_at', 'desc')->take(10)->get();
+
+        return view("welcome", [
+            'posts' => $items
+           ]);
     }
 }

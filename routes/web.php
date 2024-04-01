@@ -20,11 +20,11 @@ Route::resource('posts', PostController::class)
 ->only(['edit', 'create', 'store', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
  
-// Route::get('/{locale?}', [App\Http\Controllers\HomeController::class, 'welcome'])->name('home.welcome');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('home.welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -10,21 +10,13 @@ use App\Models\Image;
 
 class PostController extends Controller
 {
-    public function show($id, $locale = 'en')
-    {
-        App::setLocale($locale);
-
-        $post = Post::with('user')->find($id);
-
-        return view('posts.show-post', [
-            'post' => $post
-        ]);
-    }
-
     public function explore($locale = 'en')
     {
         App::setLocale($locale);
-        return view("posts.explore");
+
+        return view("posts.explore", [
+            'posts' => Post::with('user')->orderBy('created_at', 'desc')->paginate(3)
+           ]);
     }
 
     public function myPosts($locale = 'en')
@@ -61,10 +53,23 @@ class PostController extends Controller
             'posts' => Post::with('user')->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(3)
            ]);
     }
+
+    public function show($id, $locale = 'en')
+    {
+        App::setLocale($locale);
+
+        $post = Post::with('user')->find($id);
+
+        return view('posts.show-post', [
+            'post' => $post
+        ]);
+    }
+
     public function create()
     {
         return view("posts.create");
     }
+    
     public function edit(Post $post)
     {
         // $this->authorize('update', $post);

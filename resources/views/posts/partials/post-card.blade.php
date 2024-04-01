@@ -35,8 +35,9 @@
                     <div class="row w-100">
                         <div class="col d-flex justify-content-between">
                             <h5 class="card-title">{{ $post->title }}</h5>
-                            @if ($post->user->is(auth()->user()))
+                            
                             <div>
+                                @if (!Route::is('posts.show-post'))
                                 <div class="btn-group" style="position: absolute; top: 5px; right: 5px;">
                                     <button type="button" class="btn btn-light btn-sm" data-bs-toggle="dropdown"
                                         aria-expanded="false">
@@ -52,6 +53,7 @@
                                             See details</a></li>
                                         @endif
 
+                                        @if ($post->user->is(auth()->user()))
                                         <li><a class="dropdown-item" 
                                             href="{{ route('posts.edit', $post->id) }}">
                                             Edit</a></li>
@@ -60,15 +62,16 @@
                                             data-bs-toggle="modal"
                                              data-bs-target="#staticBackdrop">
                                              Remove</a></li>
+                                        @endif
                                     </ul>
                                 </div>
+                                @endif
                             </div>
-                            @endif
                         </div>
                     </div>
     
                     <h6 style=" font-weight: bold;">"{{ $post->description }}"</h6>
-                    @if ($post->user->is(auth()->user()))
+                    @if (!$post->user->is(auth()->user()))
                         <div style="color: gray">By: {{ $post->user->name }}</div>
                     @endif
                     <x-paragraph-more

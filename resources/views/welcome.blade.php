@@ -7,16 +7,19 @@
         .bg-light-20 {
             background-color: rgba(255, 255, 255, 0.20);
         }
+
         .carousel-caption {
             top: 25px;
             bottom: auto;
             transform: translateY(0);
         }
+
         .carousel-indicators {
             top: 10px;
             bottom: auto;
             transform: translateY(0);
         }
+
         .post-carousel {
             max-width: 100%;
             /* Ensure image doesn't exceed its original size */
@@ -47,37 +50,48 @@
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <h4 style="color: rgba(86, 86, 86, 0.895);text-align: center;">
-                            {{ __('Today\'s top 10 posts') }}
+                            <div>
+                                {{ __('Top posts') }}
+                            </div>
                         </h4>
                     </div>
                 </row>
             </div>
 
             <div class="container-fluid d-flex justify-content-center align-items-center post-carousel">
-                <div id="carouselExampleCaptions" class="carousel slide" >
+                <div id="carouselExampleCaptions" class="carousel slide">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
+                        @foreach ($posts as $index => $post)
+                            <button type="button" data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to="{{ $index }}" class="active" aria-current="true"
+                                aria-label="Slide {{ $index }}"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        {{-- {{dd($post)}} --}}
+
+                        @foreach ($posts as $index => $post)
+                            <div class="carousel-item{{ $index == 0 ? ' active' : '' }}">
+                                <img src="{{ asset('storage/' . $post->image?->path) }}" class="d-block w-100"
+                                    alt="...">
+                                <div class="carousel-caption d-none d-md-block bg-light-20">
+                                    <h5>{{ $post->title }}</h5>
+                                    <p>{{ $post->description }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+
+                        {{-- <div class="carousel-item active">
                             <img src="{{ asset('images/seafood_chorizo_paella-1024x819.jpg') }}" class="d-block w-100"
                                 alt="...">
                             <div class="carousel-caption d-none d-md-block bg-light-20">
                                 <h5>Spicy Seafood & Chorizo Paella</h5>
                                 <p>Rice, Pasta & Noodle Seafood</p>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('images/warm_potato_salad-1024x819.jpg') }}" class="d-block w-100"
-                                alt="...">
-                            <div class="carousel-caption d-none d-md-block bg-light-20">
-                                <h5>Warm Potato Salad</h5>
-                                <p>Appetizer & Snack Vegetarian & Vegan</p>
-                            </div>
-                        </div>
+                        </div> --}}
+
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
