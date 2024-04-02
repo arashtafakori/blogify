@@ -72,6 +72,7 @@ class PostController extends Controller
     
     public function edit(Post $post)
     {
+        // Todo Authorization
         // $this->authorize('update', $post);
 
         return view('posts.edit', [
@@ -82,7 +83,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedPost = $request->validate([
-            // 'postImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:1048',
             'title' => 'required|string|max:40',
             'description' => 'required|string|max:100',
             'content' => 'nullable|string|max:1000',
@@ -118,6 +118,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        // Todo Authorization
         // $this->authorize('update', $post);
 
         $validatedPost = $request->validate([
@@ -147,6 +148,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        // Todo Authorization
         // $this->authorize('delete', $post);
         
         $post->delete();
